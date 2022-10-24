@@ -13,7 +13,8 @@ import java.util.List;
         Count Number of Entries to ensure the Operation worked
 */
 public class EmployeeFileIOService {
-    public static String PAYROLL_FILE_NAME="payroll-file.txt";
+    public static String PAYROLL_FILE_NAME = "payroll-file.txt";
+
     public void writeData(List<EmployeePayrollData> employeePayrollList) {
         System.out.println("Its Working");
         StringBuffer empBuffer = new StringBuffer();
@@ -29,15 +30,28 @@ public class EmployeeFileIOService {
             Files.write(Paths.get(PAYROLL_FILE_NAME), empBuffer.toString().getBytes());
 
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
-    public void printData(){
+    public void printData() {
         try {
             Files.lines(new File("payroll-file.txt").toPath()).forEach(System.out::println);
-        }catch(IOException e){
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+    //UC-6 Ability for Employee Payroll Service to show number of
+    //Entries - Using File IO Count Number of Entries in the File
+    public long countEntries() {
+        long entries = 0;
+        try {
+            entries = Files.lines(new File("payroll-file.txt").toPath()).count();
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        return entries;
+
     }
 }
