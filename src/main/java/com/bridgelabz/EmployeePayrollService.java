@@ -55,7 +55,7 @@ import java.util.*;
                 Scanner consoleInputReader = new Scanner(System.in);
 
                 employeePayrollService.readEmployeePayrollData(consoleInputReader);
-                employeePayrollService.writeEmployeePayrollData(IOService.CONSOLE_IO);
+                employeePayrollService.writeEmployeePayrollData(IOService.FILE_IO);
 
             }
 
